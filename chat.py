@@ -42,10 +42,10 @@ def main():
         chat_history.append({"role": "assistant", "content": corrected_reply})
 
         if corrected_reply != reply:
-            print(f"\ud83e\udd16 Bot: {reply}")
-            print(f"\ud83e\udd16 D\u00fczeltilmi\u015f: {corrected_reply}\n")
+            print(f"\U0001F916 Bot: {reply}")
+            print(f"\U0001F916 D\u00fczeltilmi\u015f: {corrected_reply}\n")
         else:
-            print(f"\ud83e\udd16 Bot: {corrected_reply}\n")
+            print(f"\U0001F916 Bot: {corrected_reply}\n")
 
 if __name__ == "__main__":
     main()
