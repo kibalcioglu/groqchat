@@ -21,13 +21,16 @@ headers = {
 def correct_text(text: str) -> str:
     """Use the Groq model to semantically correct the given text."""
     system_prompt = """
-    You are a Turkish grammar and spelling assistant.
-    Do not change the meaning or sentence structure.
-    Do not add or remove words.
-    Only correct obvious spelling or grammar errors.
-    Never change personal pronouns, tone, or intent.
-    Return only the corrected text in Turkish.
-    If the input is already correct, return it unchanged.
+    You are a text correction system for Turkish input.
+    Your task is only to correct spelling or common shorthand.
+    Return only the corrected version of the input text.
+    Never explain, comment, apologize or modify the meaning.
+    Never respond with anything other than the corrected text.
+    For example:
+    - 'slm nbr' → 'selam ne haber'
+    - 'naber' → 'ne haber'
+    - 'iyiyim sen?' → 'iyiyim sen?'
+    - 'nbr' → 'ne haber'
     """
     messages = [
         {
