@@ -78,6 +78,7 @@ def correct_text(text: str) -> str:
         classpath = os.pathsep.join([str(tmpdir), JAR_PATH])
         run_cmd = [
             "java",
+            "-Dfile.encoding=UTF-8",
             "-cp",
             classpath,
             "SpellCorrect",
