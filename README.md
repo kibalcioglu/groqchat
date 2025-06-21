@@ -38,6 +38,8 @@ The bot communicates in Turkish. Type `çık` (or `exit`/`quit`) to end the sess
 
 GroqChat provides a minimal command-line interface for interacting with the Groq API. The helper module `groq_api.py` reads `GROQ_API_KEY` from a `.env` file and can be modified to call the OpenAI API or even a local model by adjusting the endpoint and headers. The example script `chat.py` demonstrates a basic Turkish conversation assistant.
 
+The correction behavior is defined in `groq_api.py` inside the `correct_text` function. The system prompt there expands slang words to their full forms. Changing this prompt alters how text is cleaned. For instance, instructing it to keep slang would return `slm naber` instead of the default `selam ne haber`.
+
 ## Requirements
 
 Install dependencies using `pip install -r requirements.txt`.
