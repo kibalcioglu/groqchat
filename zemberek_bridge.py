@@ -15,7 +15,7 @@ def analyze_with_zemberek(word):
                 MAIN_CLASS,
             ],
             capture_output=True,
-            input=f"{word}\nquit\n",
+            input=f"{word}\nquit\n".encode("utf-8"),
         )
 
         try:
