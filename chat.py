@@ -26,6 +26,10 @@ def main():
 
         corrected_input = correct_text(user_input)
 
+        if corrected_input.startswith("\u274c"):
+            print(corrected_input)
+            continue
+
         if corrected_input != user_input:
             print(f"\U0001F7E2 Sen: {user_input}")
             print(f"\U0001F7E2 D\u00fczeltilmi\u015f: {corrected_input}")
@@ -35,7 +39,15 @@ def main():
 
         # API'den yanıt al
         reply = send_message(chat_history)
+        if reply.startswith("\u274c"):
+            print(reply)
+            chat_history.pop()  # remove user message added earlier
+            continue
         corrected_reply = correct_text(reply)
+        if corrected_reply.startswith("\u274c"):
+            print(corrected_reply)
+            chat_history.pop()  # remove user message added earlier
+            continue
 
         # Model cevabını geçmişe ekle
         chat_history.append({"role": "assistant", "content": corrected_reply})
