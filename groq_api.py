@@ -24,7 +24,7 @@ def send_message(chat_history):
     payload = {
         "model": MODEL_NAME,
         "messages": chat_history,
-        "temperature": 0.7,
+        "temperature": 0.3,
         "max_tokens": 1024
     }
 
