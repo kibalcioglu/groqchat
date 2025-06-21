@@ -4,6 +4,7 @@ import argparse
 import sys
 import tempfile
 from pathlib import Path
+import shutil
 
 JAR_PATH = os.path.join(os.path.dirname(__file__), "zemberek-full.jar")
 MAIN_CLASS = "zemberek.apps.morphology.MorphologyConsole"
@@ -34,10 +35,24 @@ public class SpellCorrect {
 }
 """
 
+# Check once whether required Java tools are available
+_java_missing = []
+if not os.path.exists(JAR_PATH):
+    _java_missing.append("zemberek-full.jar")
+if shutil.which("java") is None:
+    _java_missing.append("java")
+if shutil.which("javac") is None:
+    _java_missing.append("javac")
+
+SPELL_AVAILABLE = not _java_missing
+if _java_missing:
+    print(
+        f"\u26a0\ufe0f Spell correction disabled (missing {', '.join(_java_missing)})"
+    )
+
 def correct_text(text: str) -> str:
     """Return spell-corrected text using Zemberek if available."""
-    if not os.path.exists(JAR_PATH):
-        print("\u26a0\ufe0f Spell correction disabled")
+    if not SPELL_AVAILABLE:
         return text
 
     words = text.split()
@@ -46,14 +61,18 @@ def correct_text(text: str) -> str:
 
     with tempfile.TemporaryDirectory() as tmpdir:
         java_file = Path(tmpdir) / "SpellCorrect.java"
-        class_file = Path(tmpdir) / "SpellCorrect.class"
         java_file.write_text(SPELL_CORRECT_JAVA, encoding="utf-8")
 
         compile_cmd = ["javac", "-cp", JAR_PATH, str(java_file)]
         try:
             subprocess.run(compile_cmd, capture_output=True, check=True)
-        except Exception:
+        except FileNotFoundError:
+            print("\u26a0\ufe0f Spell correction disabled (javac not found)")
+            return text
+        except subprocess.CalledProcessError as e:
             print("\u26a0\ufe0f Spell correction disabled")
+            if e.stderr:
+                print(e.stderr.decode("utf-8", errors="replace"))
             return text
 
         classpath = os.pathsep.join([str(tmpdir), JAR_PATH])
@@ -68,8 +87,13 @@ def correct_text(text: str) -> str:
             result = subprocess.run(run_cmd, capture_output=True, check=True)
             corrected = result.stdout.decode("utf-8").strip()
             return corrected if corrected else text
-        except Exception:
+        except FileNotFoundError:
+            print("\u26a0\ufe0f Spell correction disabled (java not found)")
+            return text
+        except subprocess.CalledProcessError as e:
             print("\u26a0\ufe0f Spell correction disabled")
+            if e.stderr:
+                print(e.stderr.decode("utf-8", errors="replace"))
             return text
 
 def analyze_with_zemberek(word):
