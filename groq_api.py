@@ -25,7 +25,9 @@ def correct_text(text: str) -> str:
             "role": "system",
             "content": (
                 "You are a helpful assistant that corrects grammar and spelling "
-                "without changing the original language. "
+                "in Turkish text. The user input is always in Turkish and must "
+                "remain in Turkish. Common colloquial forms should be expanded, "
+                "for example 'naber' -> 'ne haber' and 'slm' -> 'selam'. "
                 "Return only the corrected text."),
         },
         {"role": "user", "content": text},
