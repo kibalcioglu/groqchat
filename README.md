@@ -1,17 +1,17 @@
 # GroqChat
 
-GroqChat is a simple command-line chat application that uses the Groq API. It can optionally integrate with the Turkish NLP library Zemberek to demonstrate morphological analysis and spell correction.
+GroqChat is a simple command-line chat application that uses the Groq API. It can optionally integrate with the Turkish NLP library Zemberek.
 
 ## Prerequisites
 
 - **Python 3**
-- **Java (JDK)** – required for Zemberek spell checking
 - Obtain your `GROQ_API_KEY` and create a `.env` file in the project root containing:
 
-  ```
-  GROQ_API_KEY=YOUR_KEY_HERE
-  ```
-- Download `zemberek-full.jar` (already included here) if you plan to use Zemberek features.
+```
+GROQ_API_KEY=YOUR_KEY_HERE
+```
+
+`groq_api.py` loads this variable and can be tweaked to work with the OpenAI API or a local model by editing the URL and headers.
 
 Install the required Python packages:
 
@@ -31,33 +31,9 @@ python chat.py
 
 The bot communicates in Turkish. Type `çık` (or `exit`/`quit`) to end the session.
 
-### Spell Correction with Zemberek
-
-When `zemberek-full.jar` is available, `chat.py` automatically sends every
-message through Zemberek's `TurkishSpellChecker`. Both your input and the model
-reply are corrected before being added to the chat history. Ensure that `java`
-and `javac` are installed and that the JAR is located in the project root.
-
-### Zemberek Morphological Analysis
-
-To try a simple Zemberek integration, run `zemberek_bridge.py` and pass the word
-to analyze using the `--word` argument:
-
-```bash
-python zemberek_bridge.py --word kelime
-```
-
-If no word is provided, the script analyzes the default example word
-`geliyormuşsunuz`.
-
-The script invokes the included `zemberek-full.jar` to analyze the word and prints the result. You can modify `zemberek_bridge.py` to analyze any word you like.
-
 ## Project Purpose
 
-This repository demonstrates a minimal Groq-based chat interface with an optional bridge to the Zemberek library for Turkish language morphological analysis.
-
-
-GroqChat provides a simple command-line interface for interacting with the Groq API. The example script `chat.py` demonstrates a basic Turkish conversation assistant.
+GroqChat provides a minimal command-line interface for interacting with the Groq API. The helper module `groq_api.py` reads `GROQ_API_KEY` from a `.env` file and can be modified to call the OpenAI API or even a local model by adjusting the endpoint and headers. The example script `chat.py` demonstrates a basic Turkish conversation assistant.
 
 ## Requirements
 
