@@ -1,4 +1,4 @@
-from groq_api import send_message
+from groq_api import send_message, correct_text
 
 def main():
     print("🤖 GroqChat'e hoş geldiniz! (Çıkmak için 'çık' yazın)\n")
@@ -24,14 +24,14 @@ def main():
             print("🔚 Sohbet sonlandırıldı. Görüşmek üzere!")
             break
 
-        corrected_user = correct_text(user_input)
+        corrected_input = correct_text(user_input)
 
-        if corrected_user != user_input:
+        if corrected_input != user_input:
             print(f"\U0001F7E2 Sen: {user_input}")
-            print(f"\U0001F7E2 D\u00fczeltilmi\u015f: {corrected_user}")
+            print(f"\U0001F7E2 D\u00fczeltilmi\u015f: {corrected_input}")
 
         # Yeni kullanıcı mesajını geçmişe ekle
-        chat_history.append({"role": "user", "content": corrected_user})
+        chat_history.append({"role": "user", "content": corrected_input})
 
         # API'den yanıt al
         reply = send_message(chat_history)

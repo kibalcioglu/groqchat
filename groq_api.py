@@ -17,6 +17,20 @@ headers = {
     "Content-Type": "application/json"
 }
 
+
+def correct_text(text: str) -> str:
+    """Use the Groq model to semantically correct the given text."""
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "You are a helpful assistant that corrects grammar and spelling. "
+                "Return only the corrected text."),
+        },
+        {"role": "user", "content": text},
+    ]
+    return send_message(messages)
+
 def send_message(chat_history):
     if not GROQ_API_KEY:
         return "❌ API anahtarı eksik. .env dosyasını kontrol edin."
