@@ -1,5 +1,4 @@
 from groq_api import send_message
-from zemberek_bridge import correct_text
 
 def main():
     print("🤖 GroqChat'e hoş geldiniz! (Çıkmak için 'çık' yazın)\n")
