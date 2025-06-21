@@ -63,6 +63,15 @@ GroqChat provides a simple command-line interface for interacting with the Groq 
 
 Install dependencies using `pip install -r requirements.txt`.
 
+### Limitations
+
+- The assistant cannot browse the web or verify live data. All responses come
+  from the underlying language model without external retrieval.
+- Answers may be outdated or incorrect, so you should verify important
+  information independently.
+- The default `temperature` in `groq_api.py` is set to `0.7`, which encourages
+  cautious replies and aims to reduce speculation.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
