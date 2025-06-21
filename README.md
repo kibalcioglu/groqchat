@@ -33,13 +33,17 @@ The bot communicates in Turkish. Type `çık` (or `exit`/`quit`) to end the sess
 
 ### Zemberek Morphological Analysis
 
-To try a simple Zemberek integration, use `zemberek_bridge.py`:
+To try a simple Zemberek integration, run `zemberek_bridge.py` and pass the word
+to analyze using the `--word` argument:
 
 ```bash
-python zemberek_bridge.py
+python zemberek_bridge.py --word kelime
 ```
 
-The script invokes the included `zemberek-full.jar` to analyze a sample word and prints the result. You can modify `zemberek_bridge.py` to analyze any word you like.
+If no word is provided, the script analyzes the default example word
+`geliyormuşsunuz`.
+
+The script invokes the included `zemberek-full.jar` to analyze the word and prints the result. You can modify `zemberek_bridge.py` to analyze any word you like.
 
 ## Project Purpose
 
