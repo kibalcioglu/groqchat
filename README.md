@@ -46,3 +46,14 @@ The script invokes the included `zemberek-full.jar` to analyze a sample word and
 This repository demonstrates a minimal Groq-based chat interface with an optional bridge to the Zemberek library for Turkish language morphological analysis.
 
 
+GroqChat provides a simple command-line interface for interacting with the Groq API. The example script `chat.py` demonstrates a basic Turkish conversation assistant.
+
+## Requirements
+
+Install dependencies using `pip install -r requirements.txt`.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+
