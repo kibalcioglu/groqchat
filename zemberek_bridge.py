@@ -86,7 +86,10 @@ def correct_text(text: str) -> str:
         ]
         try:
             result = subprocess.run(run_cmd, capture_output=True, check=True)
-            corrected = result.stdout.decode("utf-8").strip()
+            try:
+                corrected = result.stdout.decode("utf-8").strip()
+            except UnicodeDecodeError:
+                corrected = result.stdout.decode("latin5", errors="replace").strip()
             return corrected if corrected else text
         except FileNotFoundError:
             print("\u26a0\ufe0f Spell correction disabled (java not found)")
