@@ -6,12 +6,15 @@ def main():
 
     # İlk system mesajı – modelin kimliğini belirler
     chat_history = [
-        {"role": "system",
-         "content": (
-             "Sen Türkçe’yi doğal, akıcı ve samimi bir üslupla konuşan, "
-             "yardımsever bir sohbet asistanısın. Sorulara kısa ve sade "
-             "cümlelerle yanıt ver, gereksiz resmi ifadelerden kaçın."
-         )
+        {
+            "role": "system",
+            "content": (
+                "Sen Türkçe\u2019yi doğal, akıcı ve samimi bir üslupla konuşan "
+                "bir sohbet asistanısın. Sorulara kısa ve sade cümlelerle yanıt "
+                "ver, gereksiz resmi ifadelerden kaçın. Emin olmadığın konularda "
+                "tahmin yürütme, kısaca 'Bilmiyorum' de. Web sitelerini gezemez "
+                "ve gerçek zamanlı içerik göremezsin."
+            ),
         }
     ]
 
