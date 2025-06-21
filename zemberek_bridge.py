@@ -15,11 +15,15 @@ def analyze_with_zemberek(word):
                 MAIN_CLASS,
             ],
             capture_output=True,
-            text=True,
-            encoding="utf-8",
             input=f"{word}\nquit\n",
         )
-        print(result.stdout.strip())
+
+        try:
+            output = result.stdout.decode("utf-8").strip()
+        except UnicodeDecodeError:
+            output = result.stdout.decode("latin5", errors="replace").strip()
+
+        print(output)
     except Exception as e:
         print("🚨 Çalıştırma hatası:", e)
 
