@@ -54,10 +54,11 @@ def correct_text(text: str) -> str:
         except Exception:
             return text
 
+        classpath = os.pathsep.join([str(tmpdir), JAR_PATH])
         run_cmd = [
             "java",
             "-cp",
-            f"{tmpdir}:{JAR_PATH}",
+            classpath,
             "SpellCorrect",
             *words,
         ]
