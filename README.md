@@ -69,8 +69,8 @@ Install dependencies using `pip install -r requirements.txt`.
   from the underlying language model without external retrieval.
 - Answers may be outdated or incorrect, so you should verify important
   information independently.
-- The default `temperature` in `groq_api.py` is set to `0.7`, which encourages
-  cautious replies and aims to reduce speculation.
+- The default `temperature` in `groq_api.py` is set to `0.3`, yielding more
+  deterministic replies with minimal creative variation.
 
 ## License
 
