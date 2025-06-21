@@ -20,15 +20,19 @@ headers = {
 
 def correct_text(text: str) -> str:
     """Use the Groq model to semantically correct the given text."""
+    system_prompt = """
+    You are a Turkish grammar and spelling assistant.
+    Do not change the meaning or sentence structure.
+    Do not add or remove words.
+    Only correct obvious spelling or grammar errors.
+    Never change personal pronouns, tone, or intent.
+    Return only the corrected text in Turkish.
+    If the input is already correct, return it unchanged.
+    """
     messages = [
         {
             "role": "system",
-            "content": (
-                "You are a helpful assistant that corrects grammar and spelling "
-                "in Turkish text. The user input is always in Turkish and must "
-                "remain in Turkish. Common colloquial forms should be expanded, "
-                "for example 'naber' -> 'ne haber' and 'slm' -> 'selam'. "
-                "Return only the corrected text."),
+            "content": system_prompt,
         },
         {"role": "user", "content": text},
     ]
