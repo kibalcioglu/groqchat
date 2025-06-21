@@ -27,6 +27,10 @@ def main():
 
         corrected_user = correct_text(user_input)
 
+        if corrected_user != user_input:
+            print(f"\U0001F7E2 Sen: {user_input}")
+            print(f"\U0001F7E2 D\u00fczeltilmi\u015f: {corrected_user}")
+
         # Yeni kullanıcı mesajını geçmişe ekle
         chat_history.append({"role": "user", "content": corrected_user})
 
@@ -36,7 +40,12 @@ def main():
 
         # Model cevabını geçmişe ekle
         chat_history.append({"role": "assistant", "content": corrected_reply})
-        print(f"🤖 Bot: {corrected_reply}\n")
+
+        if corrected_reply != reply:
+            print(f"\ud83e\udd16 Bot: {reply}")
+            print(f"\ud83e\udd16 D\u00fczeltilmi\u015f: {corrected_reply}\n")
+        else:
+            print(f"\ud83e\udd16 Bot: {corrected_reply}\n")
 
 if __name__ == "__main__":
     main()
