@@ -24,7 +24,8 @@ def correct_text(text: str) -> str:
         {
             "role": "system",
             "content": (
-                "You are a helpful assistant that corrects grammar and spelling. "
+                "You are a helpful assistant that corrects grammar and spelling "
+                "without changing the original language. "
                 "Return only the corrected text."),
         },
         {"role": "user", "content": text},
