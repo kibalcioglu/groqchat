@@ -1,6 +1,9 @@
 # GroqChat
 
-GroqChat is a simple command-line chat application that uses the Groq API. It can optionally integrate with the Turkish NLP library Zemberek.
+GroqChat is a simple command-line chat application that uses the Groq API.
+
+## Spell Correction with LLM
+This project uses Groq LLM to semantically correct both user inputs and model replies. It does not rely on any local NLP tools.
 
 ## Prerequisites
 
