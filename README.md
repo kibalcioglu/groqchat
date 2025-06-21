@@ -1,11 +1,11 @@
 # GroqChat
 
-GroqChat is a simple command-line chat application that uses the Groq API. It can optionally integrate with the Turkish NLP library Zemberek to demonstrate morphological analysis.
+GroqChat is a simple command-line chat application that uses the Groq API. It can optionally integrate with the Turkish NLP library Zemberek to demonstrate morphological analysis and spell correction.
 
 ## Prerequisites
 
 - **Python 3**
-- **Java** (required only for Zemberek)
+- **Java (JDK)** – required for Zemberek spell checking
 - Obtain your `GROQ_API_KEY` and create a `.env` file in the project root containing:
 
   ```
@@ -30,6 +30,13 @@ python chat.py
 ```
 
 The bot communicates in Turkish. Type `çık` (or `exit`/`quit`) to end the session.
+
+### Spell Correction with Zemberek
+
+When `zemberek-full.jar` is available, `chat.py` automatically sends every
+message through Zemberek's `TurkishSpellChecker`. Both your input and the model
+reply are corrected before being added to the chat history. Ensure that `java`
+and `javac` are installed and that the JAR is located in the project root.
 
 ### Zemberek Morphological Analysis
 
