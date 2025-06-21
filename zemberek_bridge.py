@@ -37,6 +37,7 @@ public class SpellCorrect {
 def correct_text(text: str) -> str:
     """Return spell-corrected text using Zemberek if available."""
     if not os.path.exists(JAR_PATH):
+        print("\u26a0\ufe0f Spell correction disabled")
         return text
 
     words = text.split()
@@ -52,6 +53,7 @@ def correct_text(text: str) -> str:
         try:
             subprocess.run(compile_cmd, capture_output=True, check=True)
         except Exception:
+            print("\u26a0\ufe0f Spell correction disabled")
             return text
 
         classpath = os.pathsep.join([str(tmpdir), JAR_PATH])
@@ -67,6 +69,7 @@ def correct_text(text: str) -> str:
             corrected = result.stdout.decode("utf-8").strip()
             return corrected if corrected else text
         except Exception:
+            print("\u26a0\ufe0f Spell correction disabled")
             return text
 
 def analyze_with_zemberek(word):
