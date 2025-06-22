@@ -34,6 +34,15 @@ args = parser.parse_args()
 
 config = OmegaConf.load(args.test_config)
 
+import subprocess
+import pathlib
+import gdown
+
+weights_dir = pathlib.Path(config.model.model_name)
+if not weights_dir.exists():
+    url = "https://drive.google.com/drive/folders/10E7aMgKJ0w4STSyrloTD6z1xVmk0IEW9"
+    subprocess.run(["gdown", "--folder", url, "-O", str(weights_dir)], check=True)
+
 tokenizer = AutoTokenizer.from_pretrained(config.model.tokenizer)
 
 def main():
