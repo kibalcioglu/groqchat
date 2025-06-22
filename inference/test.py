@@ -8,7 +8,7 @@ from omegaconf import OmegaConf
 from datasets import Dataset
 import copy
 import numpy as np
-from utils.m2_scorer.m2scorer import m2_score
+from inference.utils.m2_scorer.m2scorer import m2_score
 from data_generation.correction_rules import correction_rules
 from data_utils import preprocess_input
 import json
